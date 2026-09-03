@@ -1,0 +1,57 @@
+name: cleanup-repository
+
+on:
+  workflow_dispatch:
+    inputs:
+      delete_caches:
+        description: 'Remover caches?'
+        type: boolean
+        default: true
+      delete_actions:
+        description: 'Remover execuções?'
+        type: boolean
+        default: true
+      delete_packages:
+        description: 'Remover packages?'
+        type: boolean
+        default: true
+      delete_releases:
+        description: 'Remover releases?'
+        type: boolean
+        default: true
+      delete_tags:
+        description: 'Remover tags?'
+        type: boolean
+        default: true
+      delete_branches:
+        description: 'Remover branches?'
+        type: boolean
+        default: true
+      clean_history:
+        description: 'Resetar histórico?'
+        type: boolean
+        default: false
+      commit_message:
+        description: 'Mensagem do commit?'
+        type: string
+        default: 'chore: add project structure'
+
+permissions:
+  actions: write
+  contents: write
+  packages: write
+
+jobs:
+  cleanup:
+    uses: diogo0liveira/.github/.github/workflows/cleanup-repository.yml@main
+    with:
+      delete_caches: ${{ inputs.delete_caches }}
+      delete_actions: ${{ inputs.delete_actions }}
+      delete_packages: ${{ inputs.delete_packages }}
+      delete_releases: ${{ inputs.delete_releases }}
+      delete_tags: ${{ inputs.delete_tags }}
+      delete_branches: ${{ inputs.delete_branches }}
+      clean_history: ${{ inputs.clean_history }}
+      commit_message: ${{ inputs.commit_message }}
+    secrets:
+      CLEANUP_TOKEN: ${{ secrets.CLEANUP_TOKEN }}
