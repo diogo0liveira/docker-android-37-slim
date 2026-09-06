@@ -1,0 +1,16 @@
+# Ignore everything by default
+**
+
+# Allow specific files needed for the build
+!Dockerfile
+!.github/actions/docker-login/action.yml
+
+# Specifically ignore common noisy directories if they were allowed
+.git
+.github
+node_modules
+target
+build
+.gradle
+.idea
+*.log

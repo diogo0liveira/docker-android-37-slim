@@ -1,0 +1,25 @@
+name: main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  main:
+    uses: diogo0liveira/.github/.github/workflows/docker-android.yml@main
+    with:
+      image_description: "Android SDK 37"
+      platforms: "linux/amd64"
+    secrets: inherit
+    permissions:
+      issues: write
+      contents: write
+      packages: write
+      pull-requests: write
+      id-token: write
