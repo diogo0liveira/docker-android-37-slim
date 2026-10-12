@@ -9,7 +9,7 @@ ARG ANDROID_HOME=/opt/android/sdk
 # =========================================================
 # Stage 1: builder — baixa e instala o Android SDK
 # =========================================================
-FROM ubuntu:24.04 AS builder
+FROM ubuntu:26.04@sha256:f144425ff09be612d6d9ad965196e9cdc23dae1f42110a8a11a3e9a8198759f7 AS builder
 
 ARG JAVA_HOME
 ARG JAVA_VERSION
@@ -52,7 +52,7 @@ RUN mkdir -p /root/.android \
 # =========================================================
 # Stage 2: imagem final
 # =========================================================
-FROM ubuntu:24.04
+FROM ubuntu:26.04@sha256:f144425ff09be612d6d9ad965196e9cdc23dae1f42110a8a11a3e9a8198759f7
 ARG JAVA_HOME
 ARG JAVA_VERSION
 ARG ANDROID_HOME
