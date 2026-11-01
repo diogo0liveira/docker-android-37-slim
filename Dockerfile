@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1
+# syntax=docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
 ARG JAVA_VERSION="21"
 ARG JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64
 
@@ -9,7 +9,7 @@ ARG ANDROID_HOME=/opt/android/sdk
 # =========================================================
 # Stage 1: builder — baixa e instala o Android SDK
 # =========================================================
-FROM ubuntu:24.04 AS builder
+FROM ubuntu:24.04@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852 AS builder
 
 ARG JAVA_HOME
 ARG JAVA_VERSION
@@ -52,7 +52,7 @@ RUN mkdir -p /root/.android \
 # =========================================================
 # Stage 2: imagem final
 # =========================================================
-FROM ubuntu:24.04
+FROM ubuntu:24.04@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
 ARG JAVA_HOME
 ARG JAVA_VERSION
 ARG ANDROID_HOME
